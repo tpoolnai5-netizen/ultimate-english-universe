@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ultimate English Universe — Live Battle</title>
+<style>
+:root{color-scheme:dark;--bg:#080d20;--panel:#121a34;--line:#2c385f;--purple:#8657ff;--blue:#2d83ff;--cyan:#55d9ff;--text:#f5f7ff;--muted:#aab7df}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top left,#292052 0,transparent 40%),radial-gradient(ellipse at top right,#07385a 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:24px clamp(16px,4vw,48px);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #283454;gap:16px;flex-wrap:wrap}
+.brand{font-weight:900;font-size:clamp(20px,3vw,30px);letter-spacing:.04em}.tag{color:var(--muted);font-size:12px;letter-spacing:.2em}
+main{max-width:1120px;margin:auto;padding:28px 16px 64px}.hero{padding:22px 0 28px}.eyebrow{color:var(--cyan);font-weight:800;letter-spacing:.16em;font-size:12px}.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.08;margin:10px 0}.gradient{background:linear-gradient(90deg,#c49bff,#54d6ff);color:transparent;background-clip:text}.muted{color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.8fr);gap:18px}.panel{background:linear-gradient(145deg,rgba(21,29,58,.97),rgba(11,17,37,.98));border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 16px 50px #0002}.panel h2{margin:0 0 14px;font-size:21px}
+label{display:block;color:var(--muted);font-size:13px;margin:12px 0 6px}input{width:100%;padding:13px 14px;border-radius:12px;background:#080f25;border:1px solid #35446e;color:white;font:inherit;outline:none}input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #55d9ff22}
+button{border:0;border-radius:12px;padding:12px 16px;color:white;font:700 15px system-ui;cursor:pointer;background:linear-gradient(100deg,var(--purple),var(--blue));transition:transform .12s,opacity .12s}button:hover{transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.secondary{background:#202b4e;border:1px solid #3b4b78}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1}.status{margin-top:12px;padding:10px 12px;background:#0b132b;border:1px solid #28385f;border-radius:12px;color:var(--muted);font-size:13px;white-space:pre-wrap}.pill{display:inline-flex;padding:5px 10px;border-radius:999px;border:1px solid #3a4b77;color:#b9c8ff;font-size:12px}.room-code{font-size:34px;font-weight:900;letter-spacing:.18em;color:var(--cyan)}.players{display:grid;gap:9px;margin-top:14px}.player{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid #29385f;border-radius:12px;background:#0b132a}.player strong{overflow-wrap:anywhere}.score{font-weight:900;color:#ffda76;font-variant-numeric:tabular-nums}.question{font-size:19px;font-weight:800;margin:14px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:9px}.answer{background:#202b4e;border:1px solid #3b4b78;text-align:left}.answer.correct{border-color:#2ed6a1;background:#123c3b}.answer.wrong{border-color:#ff6b8b;background:#421f37}.small{font-size:12px;color:var(--muted)}.hidden{display:none!important}.divider{border:0;border-top:1px solid #283454;margin:20px 0}footer{padding:24px 0;color:var(--muted);font-size:12px}
+@media(max-width:780px){.layout{grid-template-columns:1fr}.panel{padding:18px}.answers{grid-template-columns:1fr}.hero{padding-top:16px}header{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">✦ ULTIMATE ENGLISH UNIVERSE</div><div class="tag">LEARN · SPEAK · COMPETE</div></div><span class="pill">LIVE BATTLE PROTOTYPE</span></header>
+<main>
+<section class="hero"><div class="eyebrow">YOUR NEXT MISSION STARTS NOW</div><h1>แข่งภาษาอังกฤษ<br><span class="gradient">แบบเรียลไทม์กับเพื่อน</span></h1><p class="muted">สร้างห้องด้วยรหัส เชิญเพื่อนเข้าร่วม ตอบคำถาม และดูคะแนนที่อัปเดตสดผ่านฐานข้อมูลออนไลน์</p></section>
+<div class="layout">
+<section class="panel">
+<h2>🚀 เข้าสู่สนามแข่งขัน</h2>
+<label for="nickname">ชื่อเล่นในเกม</label><input id="nickname" maxlength="24" placeholder="เช่น SkyRunner" autocomplete="nickname">
+<div class="row"><button id="createBtn">สร้างห้องใหม่</button><button id="showJoinBtn" class="secondary">เข้าร่วมด้วยรหัส</button></div>
+<div id="joinArea" class="hidden"><label for="roomInput">รหัสห้อง 6 ตัวอักษร</label><div class="row"><input id="roomInput" maxlength="6" placeholder="AB12CD" autocapitalize="characters"><button id="joinBtn">เข้าร่วม</button></div></div>
+<div id="roomArea" class="hidden">
+<hr class="divider"><div class="small">รหัสห้องของคุณ — ส่งให้เพื่อนเพื่อเข้าร่วม</div><div class="room-code" id="roomCode">------</div>
+<div class="row"><button id="copyBtn" class="secondary">คัดลอกรหัส</button><button id="startBtn">เริ่มการแข่งขัน</button></div>
+<div class="status" id="roomStatus">กำลังเชื่อมต่อห้อง…</div>
+</div>
+<div id="message" class="status">ตั้งค่าการเชื่อมต่อ Supabase ในไฟล์ app.js ก่อนเริ่มใช้งานออนไลน์</div>
+</section>
+<section class="panel">
+<h2>🏆 คะแนนสด</h2><div class="muted small">คะแนนจะเรียงจากมากไปน้อยและอัปเดตเมื่อผู้เล่นตอบ</div>
+<div id="leaderboard" class="players"><div class="status">ยังไม่มีผู้เล่นในห้อง</div></div>
+<hr class="divider">
+<div id="gameArea" class="hidden">
+<span class="pill" id="roundLabel">ROUND 1</span>
+<div class="question" id="questionText">Loading question…</div>
+<div class="answers" id="answers"></div>
+<div class="status" id="gameMessage">รอเริ่มการแข่งขัน</div>
+</div>
+<div id="finishedArea" class="hidden"><h2>🎉 จบการแข่งขัน!</h2><p id="winnerText"></p></div>
+</section>
+</div>
+<footer>ต้นแบบสำหรับทดลอง · คะแนนตัวอย่างไม่ใช่การรับรองระดับภาษา · โปรดใช้บัญชีและนโยบายความปลอดภัยที่เหมาะสมก่อนใช้กับนักเรียนจริง</footer>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
